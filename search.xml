@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[RxJava2操作符]]></title>
+      <url>/blog/2017/06/15/RxJava2%E6%93%8D%E4%BD%9C%E7%AC%A6/</url>
+      <content type="html"><![CDATA[<h2 id="Rxjava2-操作符学习"><a href="#Rxjava2-操作符学习" class="headerlink" title="Rxjava2 操作符学习"></a>Rxjava2 操作符学习</h2><h2 id="Learn1"><a href="#Learn1" class="headerlink" title="Learn1:"></a><a href="https://github.com/yishangfei/LearnRxjava/blob/master/app/src/main/java/com/ysf/learnrxjava/Learn1.java" title="Learn1" target="_blank" rel="noopener">Learn1:</a></h2><h4 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h4><pre><code>Disposable，可以直接调用切断，当isDisposed()返回为false的时候，接收器能正常接收事件，但当其为true的时候，
+接收器停止了接收。可以通过此参数动态控制接收事件了
+</code></pre><h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><pre><code>Map的作用是对发射时间发送的每一个事件应用一个函数，是的每一个事件都按照指定的函数去变化
+</code></pre><h4 id="Zip"><a href="#Zip" class="headerlink" title="Zip"></a>Zip</h4><pre><code>zip用于合并事件，最终配对出的Observable发射事件数目只和少的那个相同
+</code></pre><h4 id="Concat"><a href="#Concat" class="headerlink" title="Concat"></a>Concat</h4><pre><code>单一的把两个发射器连接成一个发射器,有条不紊的排序接收
+</code></pre><h4 id="FlatMap"><a href="#FlatMap" class="headerlink" title="FlatMap"></a>FlatMap</h4><pre><code>FlatMap可以把一个发射器Observable 通过某种方法转换为多个Observables，
+然后再把这些分散的Observables装进一个单一的发射器Observable。FlatMap并不能保证事件的顺序
+</code></pre><h4 id="concatMap"><a href="#concatMap" class="headerlink" title="concatMap"></a>concatMap</h4><pre><code>和FlatMap一样的，但是ConcatMap能保证事件的顺序
+</code></pre><h2 id="Learn2"><a href="#Learn2" class="headerlink" title="Learn2:"></a><a href="https://github.com/yishangfei/LearnRxjava/blob/master/app/src/main/java/com/ysf/learnrxjava/Learn2.java" title="Learn2" target="_blank" rel="noopener">Learn2:</a></h2><h4 id="distinct"><a href="#distinct" class="headerlink" title="distinct"></a>distinct</h4><pre><code>去掉重复的字符
+</code></pre><h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><pre><code>过滤掉不符合条件的值
+</code></pre><h4 id="buffer"><a href="#buffer" class="headerlink" title="buffer"></a>buffer</h4><pre><code>buffer的第一个参数是count，代表最大取值，然后skip是每次跳过个事件
+</code></pre><h4 id="timer"><a href="#timer" class="headerlink" title="timer"></a>timer</h4><pre><code>延时操作
+</code></pre><h4 id="interval"><a href="#interval" class="headerlink" title="interval"></a>interval</h4><pre><code>interval操作符用于间隔时间执行某个操作，三个参数，分别是发送延迟，间隔时间，时间单位。
+这个是间隔执行，所以当Activity都销毁的时候，实际上这个操作还依然在进行,所以利用Disposable销毁
+</code></pre><h4 id="doOnNext"><a href="#doOnNext" class="headerlink" title="doOnNext"></a>doOnNext</h4><pre><code>doOnNext它的作用是让订阅者在接收到数据之前干点事情
+</code></pre><h4 id="skip"><a href="#skip" class="headerlink" title="skip"></a>skip</h4><pre><code>skip其实作用就是接受一个 long型参数count,代表跳过count个数目开始接收
+</code></pre><h4 id="take"><a href="#take" class="headerlink" title="take"></a>take</h4><pre><code>take接受一个long型参数count,代表至多接收count个数据
+</code></pre><h4 id="just"><a href="#just" class="headerlink" title="just"></a>just</h4><pre><code>一个简单的发射器依次调用onNext()方法
+</code></pre><h2 id="Learn3"><a href="#Learn3" class="headerlink" title="Learn3:"></a><a href="https://github.com/yishangfei/LearnRxjava/blob/master/app/src/main/java/com/ysf/learnrxjava/Learn3.java" title="Learn3" target="_blank" rel="noopener">Learn3:</a></h2><h4 id="Single"><a href="#Single" class="headerlink" title="Single"></a>Single</h4><pre><code>Single接收一个参数,而SingleObserver只会调用onError或者onSuccess
+</code></pre><h4 id="debounce"><a href="#debounce" class="headerlink" title="debounce"></a>debounce</h4><pre><code>去除发送间隔时间小于200毫秒的发射事件
+</code></pre><h4 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h4><pre><code>每次订阅都会创建一个新的Observable,如果没有被订阅,就不会产生新的Observable
+</code></pre><h4 id="last"><a href="#last" class="headerlink" title="last"></a>last</h4><pre><code>last操作符仅取出可观察到的最后一个值,或者是满足某些条件的最后一项
+</code></pre><h4 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h4><pre><code>merge的作用是把多个Observable结合起来,接受可变参数,也支持迭代器集合。
+注意它和concat的区别在于,不用等到发射器A发送完所有的事件再进行发射器B的发送
+</code></pre><h4 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h4><pre><code>reduce每次用一个方法处理一个值,可以有一个seed作为初始值
+</code></pre><h4 id="scan"><a href="#scan" class="headerlink" title="scan"></a>scan</h4><pre><code>scan作用和上面的reduce一致,scan会始终如一地把每一个步骤都输出
+</code></pre><h4 id="window"><a href="#window" class="headerlink" title="window"></a>window</h4><pre><code>按照实际划分窗口，将数据发送给不同的Observable
+</code></pre>]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android 学习记录]]></title>
+      <url>/blog/2017/04/01/Android%20%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+      <content type="html"><![CDATA[<h3 id="Android-框架"><a href="#Android-框架" class="headerlink" title="Android 框架"></a>Android 框架</h3><p><a href="https://github.com/googlesamples/android-architecture" target="_blank" rel="noopener">MVP</a></p>
+<p><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="noopener">Rxjava2</a></p>
+<p><a href="https://github.com/ReactiveX/RxAndroid" target="_blank" rel="noopener">RxAndroid</a></p>
+<p><a href="https://github.com/AndroidKnife/RxBus" target="_blank" rel="noopener">RxBus</a></p>
+<p><a href="https://github.com/trello/RxLifecycle" target="_blank" rel="noopener">Rxlifecycle</a></p>
+<p><a href="https://github.com/JakeWharton/RxBinding" target="_blank" rel="noopener">Rxbinding</a></p>
+<p><a href="https://github.com/tbruyelle/RxPermissions" target="_blank" rel="noopener">RxPermissions</a></p>
+<p><a href="https://github.com/square/dagger" target="_blank" rel="noopener">Dagger2</a></p>
+<p><a href="https://github.com/JakeWharton/butterknife" target="_blank" rel="noopener">Butterknife</a></p>
+<p><a href="https://github.com/square/retrofit" target="_blank" rel="noopener">Retrofit2</a></p>
+<p><a href="https://github.com/square/okhttp" target="_blank" rel="noopener">Okhttp</a></p>
+<p><a href="https://github.com/joelittlejohn/jsonschema2pojo" target="_blank" rel="noopener">Gson</a></p>
+<p><a href="https://github.com/alibaba/fastjson" target="_blank" rel="noopener">FastJson</a></p>
+<p><a href="https://github.com/bumptech/glide" target="_blank" rel="noopener">Glide</a></p>
+<h3 id="Android-Studio-插件"><a href="#Android-Studio-插件" class="headerlink" title="Android Studio 插件"></a>Android Studio 插件</h3><p>Android ButterKnife Zelezny</p>
+<p>ADB WIFI</p>
+<p>GsonFormat</p>
+<p>ADB Idea</p>
+<h3 id="实用记录"><a href="#实用记录" class="headerlink" title="实用记录"></a>实用记录</h3><p>Android Studio idea.properties 最后一句话</p>
+<p>disable.android.first.run=true</p>
+<p>Gradle 正式编译</p>
+<p>gradlew assembleRelease</p>
+]]></content>
+      
+        
+    </entry>
+    
+  
+  
+</search>
